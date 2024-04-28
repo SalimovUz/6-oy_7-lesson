@@ -3,6 +3,7 @@ import sidebar from "./assets/images/photos/bg-sidebar-desktop.svg";
 import arcade from "./assets/images/photos/icon-arcade.svg";
 import advanced from "./assets/images/photos/icon-advanced.svg";
 import pro from "./assets/images/photos/icon-pro.svg";
+import Button from "./Button/Button";
 
 const App = () => {
   const [step, setStep] = useState(1);
@@ -12,6 +13,11 @@ const App = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
   const [isChecked3, setIsChecked3] = useState(false);
+  const [toggle, setToggle] = useState("monthly");
+
+  const handleToggle = () => {
+    setToggle(toggle === "monthly" ? "yearly" : "monthly");
+  };
 
   const handleClick = (colorState, setColorState) => {
     if (!color1 && !color2 && !color3) {
@@ -42,14 +48,10 @@ const App = () => {
   const handleBorder3 = () => {
     setIsChecked3(!isChecked3);
   };
-
-  const nextPage = () => {
-    setStep(step + 1);
-  };
   return (
     <>
       <div className="container mx-auto px-10 py-1">
-        <div className="enter__section flex justify-evenly mx-auto gap-10 w-[80%] rounded-xl py-5 h-screen bg-white">
+        <div className=" enter__section flex justify-evenly mx-auto gap-10 w-[80%] rounded-xl py-5 h-screen bg-white">
           <div
             className="left bg-contain bg-left w-[300px] h-[100%] bg-no-repeat px-8 py-12"
             style={{ backgroundImage: `url(${sidebar})` }}
@@ -65,8 +67,10 @@ const App = () => {
                   1
                 </h1>
                 <div className="flex flex-col">
-                  <h2 className="text-white text-md uppercase">Step 1</h2>
-                  <h3 className="text-white text-lg font-semibold uppercase">
+                  <h2 className="text-white text-sm uppercase font-[ubuntu] font-semibold">
+                    Step 1
+                  </h2>
+                  <h3 className="text-white text-md font-bold uppercase font-[ubuntu]">
                     Your info
                   </h3>
                 </div>
@@ -82,8 +86,10 @@ const App = () => {
                   2
                 </h1>
                 <div className="flex flex-col">
-                  <h2 className="text-white text-md uppercase">Step 2</h2>
-                  <h3 className="text-white text-lg font-semibold uppercase">
+                  <h2 className="text-white text-sm uppercase font-[ubuntu] font-semibold">
+                    Step 2
+                  </h2>
+                  <h3 className="text-white text-md font-bold uppercase font-[ubuntu]">
                     Select Plan
                   </h3>
                 </div>
@@ -99,8 +105,10 @@ const App = () => {
                   3
                 </h1>
                 <div className="flex flex-col">
-                  <h2 className="text-white text-md uppercase">Step 3</h2>
-                  <h3 className="text-white text-lg font-semibold uppercase">
+                  <h2 className="text-white text-sm uppercase font-[ubuntu] font-semibold">
+                    Step 3
+                  </h2>
+                  <h3 className="text-white text-md font-bold uppercase font-[ubuntu]">
                     Add-ons
                   </h3>
                 </div>
@@ -116,8 +124,10 @@ const App = () => {
                   4
                 </h1>
                 <div className="flex flex-col">
-                  <h2 className="text-white text-md uppercase">Step 4</h2>
-                  <h3 className="text-white text-lg font-semibold uppercase">
+                  <h2 className="text-white text-sm uppercase font-[ubuntu] font-semibold">
+                    Step 4
+                  </h2>
+                  <h3 className="text-white text-md font-bold uppercase font-[ubuntu]">
                     Summary
                   </h3>
                 </div>
@@ -177,12 +187,7 @@ const App = () => {
                 </label>
               </form>
 
-              <button
-                onClick={nextPage}
-                className="block text-center mt-[10%] bg-blue-950 text-white font-semibold font-[ubuntu] px-[5%] py-[2%] rounded-lg"
-              >
-                Next Step
-              </button>
+              <Button text="Next Step" />
             </div>
           )}
 
@@ -251,13 +256,24 @@ const App = () => {
                   </p>
                 </div>
               </div>
+              <div className="mx-auto bg-slate-300 w-full justify-center flex py-2 rounded-lg mt-5">
+                <div className="flex items-center gap-4">
+                  <p className="ml-2 font-semibold font-[ubuntu]">Monthly</p>
+                  <div
+                    className={`w-12 h-6 bg-blue-800 rounded-full p-1 flex items-center cursor-pointer`}
+                    onClick={handleToggle}
+                  >
+                    <div
+                      className={`bg-white w-4 h-4 rounded-full shadow-md transform ${
+                        toggle === "monthly" ? "translate-x-0" : "translate-x-6"
+                      } transition-transform`}
+                    />
+                  </div>
+                  <p className="ml- font-semibold font-[ubuntu]">Yearly</p>
+                </div>
+              </div>
 
-              <button
-                onClick={nextPage}
-                className="block text-center mt-[10%] bg-blue-950 text-white font-semibold font-[ubuntu] px-[5%] py-[2%] rounded-lg"
-              >
-                Next Step
-              </button>
+              <Button text="Next Step" />
             </div>
           )}
 
@@ -271,58 +287,6 @@ const App = () => {
               </p>
 
               <div className="onses flex flex-col gap-5">
-                <div
-                  className={`border ${
-                    isChecked
-                      ? "border-blue-950 bg-blue-200"
-                      : "border-blue-950"
-                  }  ons flex items-center justify-between border-2 border-blue-800 rounded-lg px-4 py-2`}
-                  style={{ borderWidth: isChecked ? "1px" : "1px" }}
-                >
-                  <input
-                    type="checkbox"
-                    checked={isChecked}
-                    onChange={handleBorder}
-                  />
-                  <div className="flex flex-col">
-                    <h1 className="text-lg font-semibold font-ubuntu text-blue-950">
-                      Online service
-                    </h1>
-                    <p className="text-gray-400 font-ubuntu text-medium text-sm">
-                      Acces to multiplayer games{" "}
-                    </p>
-                  </div>
-                  <h2 className="ml-[10%] text-blue-700 font-[ubuntu] font-semibold text-sm">
-                    +$1/monthly
-                  </h2>
-                </div>
-
-                <div
-                  className={`border ${
-                    isChecked2
-                      ? "border-blue-950 bg-blue-200"
-                      : "border-blue-950"
-                  }  ons flex items-center justify-between border-2 border-blue-800 rounded-lg px-4 py-2`}
-                  style={{ borderWidth: isChecked2 ? "1px" : "1px" }}
-                >
-                  <input
-                    type="checkbox"
-                    checked={isChecked2}
-                    onChange={handleBorder2}
-                  />
-                  <div className="flex flex-col">
-                    <h1 className="text-lg font-semibold font-ubuntu text-blue-950">
-                      Online service
-                    </h1>
-                    <p className="text-gray-400 font-ubuntu text-medium text-sm">
-                      Acces to multiplayer games{" "}
-                    </p>
-                  </div>
-                  <h2 className="ml-[10%] text-blue-700 font-[ubuntu] font-semibold text-sm">
-                    +$1/monthly
-                  </h2>
-                </div>
-
                 <div
                   className={`border ${
                     isChecked3
@@ -348,16 +312,125 @@ const App = () => {
                     +$1/monthly
                   </h2>
                 </div>
+                <div
+                  className={`border ${
+                    isChecked
+                      ? "border-blue-950 bg-blue-200"
+                      : "border-blue-950"
+                  }  ons flex items-center justify-between border-2 border-blue-800 rounded-lg px-4 py-2`}
+                  style={{ borderWidth: isChecked ? "1px" : "1px" }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={handleBorder}
+                  />
+                  <div className="flex flex-col">
+                    <h1 className="text-lg font-semibold font-ubuntu text-blue-950">
+                      Larger storage
+                    </h1>
+                    <p className="text-gray-400 font-ubuntu text-medium text-sm">
+                      Salimov To'lqin Shuhrat o'g'li
+                    </p>
+                  </div>
+                  <h2 className="ml-[10%] text-blue-700 font-[ubuntu] font-semibold text-sm">
+                    +$2/monthly
+                  </h2>
+                </div>
+
+                <div
+                  className={`border ${
+                    isChecked2
+                      ? "border-blue-950 bg-blue-200"
+                      : "border-blue-950"
+                  }  ons flex items-center justify-between border-2 border-blue-800 rounded-lg px-4 py-2`}
+                  style={{ borderWidth: isChecked2 ? "1px" : "1px" }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={isChecked2}
+                    onChange={handleBorder2}
+                  />
+                  <div className="flex flex-col">
+                    <h1 className="text-lg font-semibold font-ubuntu text-blue-950">
+                      Customizable Profile
+                    </h1>
+                    <p className="text-gray-400 font-ubuntu text-medium text-sm">
+                      Custom theme on your Profile
+                    </p>
+                  </div>
+                  <h2 className="ml-[10%] text-blue-700 font-[ubuntu] font-semibold text-sm">
+                    +$2/monthly
+                  </h2>
+                </div>
               </div>
 
-              <button
-                onClick={nextPage}
-                className="block text-center mt-[10%] bg-blue-950 text-white font-semibold font-[ubuntu] px-[5%] py-[2%] rounded-lg"
-              >
-                Next Step
-              </button>
+              <Button text="Next Step" />
             </div>
           )}
+
+          {step === 4 && (
+            <div className="right flex flex-col my-10 gap-3">
+              <h1 className="text-4xl font-bold font-[ubuntu] text-blue-950">
+                Finishing Up
+              </h1>
+              <p className=" font-medium text-lg font-[ubuntu] text-gray-500">
+                Double-check everything looks OK before confirming.
+              </p>
+
+              <div className="summary">
+                <div className="top flex flex-col gap-4 p-5 rounded-lg bg-slate-100">
+                  <div className="item flex items-center justify-between mb-5">
+                    <div className="flex flex-col gap-1">
+                      <h1 className="font-semibold font-[ubuntu] text-blue-900">
+                        Arcade monthly
+                      </h1>
+                      <a className=" underline text-blue-500" href="#">
+                        Change
+                      </a>
+                    </div>
+
+                    <h2 className="text-blue-900 font-semibold font-[ubuntu]">
+                      $9/monthly
+                    </h2>
+                  </div>
+
+                  <hr />
+
+                  <div className="item flex justify-between items-center">
+                    <h1 className="font-medium font-[ubuntu] text-gray-400">
+                      Online service
+                    </h1>
+                    <p className="text-blue-800 text-sm font-semibold font-[ubuntu]">
+                      +1$/monthly
+                    </p>
+                  </div>
+
+                  <div className="item flex justify-between items-center">
+                    <h1 className="font-medium font-[ubuntu] text-gray-400">
+                      Larger storage
+                    </h1>
+                    <p className="text-blue-800 text-sm font-semibold font-[ubuntu]">
+                      +2$/monthly
+                    </p>
+                  </div>
+                </div>
+
+                <div className="item flex justify-between items-center p-5">
+                  <h1 className="font-lg font-[ubuntu] text-gray-400">
+                    Total (per month)
+                  </h1>
+                  <p className="text-blue-800 text-md font-semibold font-[ubuntu]">
+                    +12$/monthly
+                  </p>
+                </div>
+              </div>
+
+              <Button text="Next Step" />
+            </div>
+          )}
+
+          {step === 5 && alert("Qabul qilindi")}
         </div>
       </div>
     </>
