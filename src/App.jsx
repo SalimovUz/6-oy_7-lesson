@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import sidebar from "./assets/images/photos/bg-sidebar-desktop.svg";
+import sidebar from "../public/bg-sidebar-desktop.svg";
 import arcade from "./assets/images/photos/icon-arcade.svg";
 import advanced from "./assets/images/photos/icon-advanced.svg";
 import pro from "./assets/images/photos/icon-pro.svg";
@@ -19,6 +19,9 @@ const App = () => {
     setToggle(toggle === "monthly" ? "yearly" : "monthly");
   };
 
+  const nextPage = () => {
+    setStep(step + 1);
+  };
   const handleClick = (colorState, setColorState) => {
     if (!color1 && !color2 && !color3) {
       setColorState(true);
@@ -187,7 +190,7 @@ const App = () => {
                 </label>
               </form>
 
-              <Button text="Next Step" />
+              <Button text="Next Step" click={nextPage} />
             </div>
           )}
 
@@ -273,7 +276,7 @@ const App = () => {
                 </div>
               </div>
 
-              <Button text="Next Step" />
+              <Button text="Next Step" click={nextPage} />
             </div>
           )}
 
@@ -365,7 +368,7 @@ const App = () => {
                 </div>
               </div>
 
-              <Button text="Next Step" />
+              <Button text="Next Step" click={nextPage} />
             </div>
           )}
 
@@ -426,11 +429,9 @@ const App = () => {
                 </div>
               </div>
 
-              <Button text="Next Step" />
+              <Button text="Next Step" click={nextPage} />
             </div>
           )}
-
-          {step === 5 && alert("Qabul qilindi")}
         </div>
       </div>
     </>
