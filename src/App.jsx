@@ -22,6 +22,9 @@ const App = () => {
   const nextPage = () => {
     setStep(step + 1);
   };
+  const back = () => {
+    setStep(step - 1);
+  }
   const handleClick = (colorState, setColorState) => {
     if (!color1 && !color2 && !color3) {
       setColorState(true);
@@ -51,15 +54,20 @@ const App = () => {
   const handleBorder3 = () => {
     setIsChecked3(!isChecked3);
   };
+
+  const firstpage = () => {
+    setStep(1)
+  }
   return (
     <>
       <div className="container mx-auto px-10 py-1">
         <div className=" enter__section flex justify-evenly mx-auto gap-10 w-[80%] rounded-xl py-5 h-screen bg-white">
           <div
-            className="left bg-contain bg-left w-[300px] h-[100%] bg-no-repeat px-8 py-12"
-            style={{ backgroundImage: `url(${sidebar})` }}
+            className="left  h-[100%] px-8"
+            // style={{ backgroundImage: `url(${sidebar})` }}
           >
-            <div className="steps flex flex-col gap-6">
+            <img className="absolute h-[90%] w-[20%]" src={sidebar} alt="" />
+            <div className="steps flex flex-col gap-6 relative top-5 left-5">
               <div
                 onClick={() => {
                   setStep(1);
@@ -190,7 +198,10 @@ const App = () => {
                 </label>
               </form>
 
-              <Button text="Next Step" click={nextPage} />
+              <div className="buttons flex items-center justify-end mt-[10%] ">
+                
+                <Button text="Next Page" click={nextPage} />
+              </div>
             </div>
           )}
 
@@ -276,7 +287,15 @@ const App = () => {
                 </div>
               </div>
 
-              <Button text="Next Step" click={nextPage} />
+              <div className="buttons flex items-center justify-between mt-[10%]">
+                <button
+                  className=" text-gray-600 hover:text-black font-[ubuntu] font-semibold"
+                  onClick={back}
+                >
+                  Go back
+                </button>
+                <Button text="Next Page" click={nextPage} />
+              </div>
             </div>
           )}
 
@@ -368,7 +387,15 @@ const App = () => {
                 </div>
               </div>
 
-              <Button text="Next Step" click={nextPage} />
+              <div className="buttons flex items-center justify-between mt-[10%]">
+                <button
+                  className=" text-gray-600 hover:text-black font-[ubuntu] font-semibold"
+                  onClick={back}
+                >
+                  Go back
+                </button>
+                <Button text="Next Page" click={nextPage} />
+              </div>
             </div>
           )}
 
@@ -429,7 +456,27 @@ const App = () => {
                 </div>
               </div>
 
-              <Button text="Next Step" click={nextPage} />
+              <div className="buttons flex items-center justify-between mt-[10%]">
+                <button
+                  className=" text-gray-600 hover:text-black font-[ubuntu] font-semibold"
+                  onClick={back}
+                >
+                  Go back
+                </button>
+                <Button text="Next Page" click={nextPage} />
+              </div>
+            </div>
+          )}
+          {step === 5 && (
+            <div className="right flex flex-col my-10 gap-3">
+              <h1 className="text-4xl font-bold font-[ubuntu] text-blue-950">
+                Succesfully status
+              </h1>
+              <p className=" font-medium text-lg font-[ubuntu] text-gray-500"></p>
+
+              <div className="buttons flex items-center justify-between mt-[10%]">
+                <Button text="Home page" click={firstpage} />
+              </div>
             </div>
           )}
         </div>
